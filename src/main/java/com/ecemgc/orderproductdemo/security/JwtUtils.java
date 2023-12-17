@@ -54,7 +54,7 @@ public class JwtUtils {
     public String generateToken(String email , List<String> roles) {
 
         return Jwts.builder().setSubject(email).claim("role",roles).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(Date.from(Instant.now().plus(jwtExpiration, ChronoUnit.MILLIS)))
+                .setExpiration(Date.from(Instant.now().plus(jwtExpiration, ChronoUnit.MINUTES)))
                 .signWith(SignatureAlgorithm.HS256, secret).compact();
     }
 
@@ -84,7 +84,7 @@ public class JwtUtils {
     public String getToken (HttpServletRequest httpServletRequest) {
         final String bearerToken = httpServletRequest.getHeader("Authorization");
         if(StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer "))
-        {return bearerToken.substring(7,bearerToken.length()); } // The part after "Bearer "
+        {return bearerToken.substring(7); } // The part after "Bearer "
         return null;
     }
 }
