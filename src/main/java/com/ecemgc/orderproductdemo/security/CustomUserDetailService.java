@@ -1,6 +1,7 @@
 package com.ecemgc.orderproductdemo.security;
 
 import com.ecemgc.orderproductdemo.entity.UserEntity;
+import com.ecemgc.orderproductdemo.exception.NotFoundException;
 import com.ecemgc.orderproductdemo.service.user.intf.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,12 +16,10 @@ public class CustomUserDetailService implements UserDetailsService {
     private final UserService userService;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity user = userService.findByEmail(username);
-        if(user == null){
+        try {
+            return userService.findByEmail(username);
+        } catch (NotFoundException notFoundException) {
             throw new UsernameNotFoundException("User not found with: " + username);
         }
-
-        return user;
-
     }
 }
