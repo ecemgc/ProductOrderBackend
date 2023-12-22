@@ -21,4 +21,6 @@ public class ProductEntity {
     private BigDecimal price;
     private String supplier;
     private int amount;
+
+
 }

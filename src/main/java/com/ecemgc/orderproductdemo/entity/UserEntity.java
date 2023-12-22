@@ -19,7 +19,7 @@ import java.util.Collection;
 @Table(name = "user")
 @Getter
 @Setter
-//@FieldDefaults(level = AccessLevel.PRIVATE) böyle olduğunda private lar gidebilir
+//@FieldDefaults(level = AccessLevel.PRIVATE) böyle olduğunda private lar gidebilir.
 public class UserEntity implements UserDetails {
 
     @Id
@@ -52,21 +52,21 @@ public class UserEntity implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
