@@ -18,15 +18,13 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    private final static List<String> allowedPaths = Arrays.asList("/auth/login","/auth/register");
+    private final static List<String> allowedPaths = Arrays.asList("/auth/login", "/auth/register");
 
     private final JwtUtils jwtUtils;
     private final CustomUserDetailService customUserDetailService;

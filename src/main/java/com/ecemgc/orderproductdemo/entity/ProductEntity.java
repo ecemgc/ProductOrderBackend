@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -12,7 +13,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class ProductEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,7 +20,7 @@ public class ProductEntity {
     private String description;
     private BigDecimal price;
     private String supplier;
-    private int amount;
-
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    private List<ProductOrderEntity> productOrderEntities;
 
 }

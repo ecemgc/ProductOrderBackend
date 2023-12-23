@@ -1,11 +1,6 @@
 package com.ecemgc.orderproductdemo.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -14,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -39,6 +35,8 @@ public class UserEntity implements UserDetails {
     @Column(name = "updated_at", nullable = false)
     @CreationTimestamp
     private LocalDateTime updatedAt;
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    private List<OrderEntity> orderEntityList;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
